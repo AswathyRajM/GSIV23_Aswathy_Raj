@@ -32,7 +32,7 @@ function MovieCard({ movie }) {
             </p>
             {movie.vote_average && movie.vote_average > 0 && (
               <p className='movie-rating' data-testid='movie-rating'>
-                ⭐ {Math.round(movie.vote_average * 10) / 10}
+                ⭐ {parseFloat(movie.vote_average).toFixed(1)}
               </p>
             )}
           </div>

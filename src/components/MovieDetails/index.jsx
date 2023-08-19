@@ -44,7 +44,7 @@ function MovieDetails() {
   if (
     !movieDetails ||
     Object.keys(movieDetails).length === 0 ||
-    movieDetails.release_date === undefined 
+    movieDetails.release_date === undefined
   )
     return <DetailsLoader />;
   return (
@@ -57,7 +57,7 @@ function MovieDetails() {
           <p className='movie-title'>
             {movieDetails.title}
             <span className='movie-rating'>
-              ⭐ {movieDetails.vote_average} ratings
+              ⭐ {parseFloat(movieDetails.vote_average).toFixed(1)} ratings
             </span>
           </p>
           <p className='movie-info'>
@@ -75,11 +75,17 @@ function MovieDetails() {
             {movieDetails.casts.slice(0, 12).map((cast, i) => {
               if (i === 11)
                 return (
-                  <>
-                    <span className='cast-info'> {cast}</span>...
-                  </>
+                  <React.Fragment key={i}>
+                    <span className='cast-info'> {cast}</span>
+                    ...
+                  </React.Fragment>
                 );
-              return <span className='cast-info'> {cast}</span>;
+              return (
+                <span key={i} className='cast-info'>
+                  {' '}
+                  {cast}
+                </span>
+              );
             })}
           </p>
           <p className='sub-heading'>Description </p>
