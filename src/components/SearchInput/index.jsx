@@ -15,16 +15,14 @@ function SearchInput() {
 
   const handleSeahcInputChange = (text) => {
     setSearchText(text);
-
+    clearTimeout(timer);
     if (text === '') {
       dispatch(clearState());
-      dispatch(getUpcomingMovies(1));
       dispatch(setSearchTerm(''));
       return;
     }
 
     // debounce technique
-    clearTimeout(timer);
     const newTimer = setTimeout(() => {
       dispatch(setSearchTerm(text));
       dispatch(clearState());
