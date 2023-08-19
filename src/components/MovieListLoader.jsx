@@ -1,6 +1,6 @@
 import LoaderImg from '../assets/images/loader.png';
 
-export function Loader() {
+function LoaderComponent() {
   return (
     <>
       <div className='movie-card-loader' data-testid='movie-card-loader'>
@@ -19,6 +19,22 @@ export function Loader() {
     </>
   );
 }
+
+export const Loader = () => {
+  let width = Math.ceil(window.innerWidth / (350 + 40));
+  let height = Math.ceil(window.innerHeight / (450 + 40));
+  return (
+    <div className='movie-list-container'>
+      {[...Array(width * height).keys()].map((i) => {
+        return (
+          <div key={i}>
+            <LoaderComponent />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export function DetailsLoader() {
   return (

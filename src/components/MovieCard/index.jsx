@@ -30,15 +30,21 @@ function MovieCard({ movie }) {
             <p className='movie-title' data-testid='movie-title'>
               {movie.title}
             </p>
-            {movie.vote_average > 0 && (
+            {movie.vote_average && movie.vote_average > 0 && (
               <p className='movie-rating' data-testid='movie-rating'>
-                ⭐ {movie.vote_average}
+                ⭐ {Math.round(movie.vote_average * 10) / 10}
               </p>
             )}
           </div>
 
           <p className='movie-overview' data-testid='movie-overview'>
-            {movie.overview}
+            {movie.overview ? (
+              movie.overview
+            ) : (
+              <span className='not-available'>
+                <i>Not available</i>
+              </span>
+            )}
           </p>
         </div>
       </Link>

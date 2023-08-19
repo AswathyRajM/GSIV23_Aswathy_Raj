@@ -70,3 +70,7 @@
 .movie-rating {
   color: var(--light-gray);
 }
+
+.not-available {
+  color: var(--disabled);
+}

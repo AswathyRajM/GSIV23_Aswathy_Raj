@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchMovieDetails, fetchupComingMovies } from '../../apis/movieApis';
+import {
+  fetchMovieDetails,
+  fetchupComingMovies,
+  searchMovie,
+} from '../../apis/movieApis';
 
 export const getUpcomingMovies = createAsyncThunk(
   '/getUpcomingMovies',
@@ -18,12 +22,22 @@ export const getMovieDetails = createAsyncThunk(
   }
 );
 
+export const searchMovies = createAsyncThunk(
+  '/search/movie',
+  async ({ movieName, page }) => {
+    const response = await searchMovie(movieName, page);
+    return response;
+  }
+);
+
 const initialState = {
   movieList: [],
   movieDetails: {},
   error: null,
   isLoading: false,
   totalPages: 1,
+  currentPage: 0,
+  searchTerm: '',
 };
 
 export const movieReducer = createSlice({
@@ -32,6 +46,15 @@ export const movieReducer = createSlice({
   reducers: {
     clearMovieDetails: (state) => {
       state.movieDetails = {};
+    },
+
+    clearState: (state) => {
+      state.movieList = [];
+      state.currentPage = 0;
+    },
+
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -44,6 +67,7 @@ export const movieReducer = createSlice({
         const arr = [...state.movieList, ...action.payload.results];
         state.movieList = arr;
         state.totalPages = action.payload.total_pages;
+        state.currentPage = action.payload.page;
         state.isLoading = false;
       })
       .addCase(getUpcomingMovies.rejected, (state, action) => {
@@ -61,23 +85,26 @@ export const movieReducer = createSlice({
       .addCase(getMovieDetails.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(searchMovies.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(searchMovies.fulfilled, (state, action) => {
+        const arr = [...state.movieList, ...action.payload.results];
+        state.movieList = arr;
+        state.totalPages = action.payload.total_pages;
+        state.isLoading = false;
+      })
+      .addCase(searchMovies.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
-    // .addCase(getSearchResults.pending, (state) => {
-    //   state.isLoading = true;
-    //   state.error = null;
-    // })
-    // .addCase(getSearchResults.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.movies = action.payload;
-    // })
-    // .addCase(getSearchResults.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = action.error.message;
-    // });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { clearMovieDetails } = movieReducer.actions;
+export const { clearMovieDetails, clearState, setSearchTerm } =
+  movieReducer.actions;
 
 export default movieReducer.reducer;
