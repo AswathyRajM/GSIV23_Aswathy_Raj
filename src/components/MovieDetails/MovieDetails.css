@@ -1,0 +1,38 @@
+.details-container {
+  padding: 0;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.details-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1rem;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.details-main .image-container {
+  width: 40%;
+}
+
+.details-main .image-container img {
+  height: 100%;
+}
+
+.movie-details .movie-title {
+  font-weight: 600;
+  font-size: 1.75rem;
+}
+
+.movie-details .movie-title span {
+  font-weight: normal;
+  color: var(--light-gray);
+}
+
+.movie-details .movie-info {
+  line-height: 2rem;
+}

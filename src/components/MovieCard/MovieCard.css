@@ -20,7 +20,7 @@
   margin: 0;
 }
 
-.card-content .title {
+.card-content .movie-title {
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -58,11 +58,15 @@
   justify-content: space-between;
 }
 
-.overview {
+.movie-overview {
   display: -webkit-box;
   max-width: 100%;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-top: 0.5rem !important;
+  margin-top: 1rem !important;
+}
+
+.movie-rating {
+  color: var(--light-gray);
 }

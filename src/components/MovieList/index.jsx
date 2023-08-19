@@ -4,6 +4,7 @@ import MovieCard from '../MovieCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUpcomingMovies } from '../../util/redux/reducer/movieReducer';
 import './MovieList.css';
+import { Loader } from '../MovieListLoader';
 
 function MoveiList() {
   const [page, setPage] = useState(1);
@@ -13,39 +14,32 @@ function MoveiList() {
   );
 
   const fetchMoreMovies = () => {
+    if (page > totalPages) return;
     dispatch(getUpcomingMovies(page + 1));
-    setPage((prev) => prev + 1);
+    setPage(page + 1);
   };
 
   useEffect(() => {
     dispatch(getUpcomingMovies(page));
   }, [dispatch, page]);
 
-  const loader = (
-    <div className='movie-card-loader' data-testid='movie-card-loader'>
-      <div className='image-section-loader'></div>
-      <div className='card-content-loader'>
-        <div className='card-heading-rating-loader'>
-          <p className='title-loader' data-testid='title-loader'></p>
-          <p className='rating-loader' data-testid='rating-loader'></p>
-        </div>
-        <p className='overview-loader' data-testid='overview-loader'></p>
-        <p className='overview-loader' data-testid='overview-loader'></p>
-      </div>
-    </div>
-  );
-
   return (
     <>
       {isLoading || (movieList && movieList.length < 1) ? (
         <div className='movie-list-container'>
-          {[...Array(25).keys()].map((i) => loader)}
+          {[...Array(25).keys()].map((i) => {
+            return (
+              <div key={i}>
+                <Loader />
+              </div>
+            );
+          })}
         </div>
       ) : (
         <InfiniteScroll
           dataLength={movieList?.length | 0}
           next={fetchMoreMovies}
-          hasMore={true}
+          hasMore={page <= totalPages}
           loader={<h4>Loading...</h4>}
         >
           <div className='movie-list-container'>

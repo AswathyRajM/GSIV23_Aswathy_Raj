@@ -33,6 +33,7 @@ export const movieReducer = createSlice({
       })
       .addCase(getUpcomingMovies.fulfilled, (state, action) => {
         const arr = [...state.movieList, ...action.payload.results];
+        console.log(arr);
         state.movieList = arr;
         state.totalPages = action.payload.total_pages;
         state.isLoading = false;

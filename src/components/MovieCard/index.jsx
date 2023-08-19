@@ -20,21 +20,21 @@ function MovieCard({ movie }) {
             movie.poster_path ? 'image-section image-found' : 'image-section'
           }
         >
-          <img data-testid='image' src={imgUrl} alt={movie.title + 'image'} />
+          <img src={imgUrl} alt={movie.title + 'image'} />
         </div>
         <div className='card-content'>
           <div className='card-heading-rating'>
-            <p className='title' data-testid='title'>
+            <p className='movie-title' data-testid='movie-title'>
               {movie.title}
             </p>
             {movie.vote_average > 0 && (
-              <p className='rating' data-testid='rating'>
+              <p className='movie-rating' data-testid='movie-rating'>
                 ⭐ {movie.vote_average}
               </p>
             )}
           </div>
 
-          <p className='overview' data-testid='overview'>
+          <p className='movie-overview' data-testid='movie-overview'>
             {movie.overview}
           </p>
         </div>
