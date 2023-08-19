@@ -1,24 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MovieCard from '../MovieCard';
-import ImageLoader from '../Loading/MovieListLoading';
-import useWindowDimensions from '../../util/hooks/useWIndowDiamention';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUpcomingMovies } from '../../util/redux/reducer/movieReducer';
 import './MovieList.css';
 
 function MoveiList() {
   const [page, setPage] = useState(1);
-  const { width } = useWindowDimensions();
   const dispatch = useDispatch();
   const { isLoading, totalPages, movieList } = useSelector(
     (state) => state.movies
   );
-
-  let limit = 15;
-  if (width > 2000) {
-    limit = 20;
-  }
 
   const fetchMoreMovies = () => {
     dispatch(getUpcomingMovies(page + 1));
@@ -29,12 +21,26 @@ function MoveiList() {
     dispatch(getUpcomingMovies(page));
   }, [dispatch, page]);
 
+  const loader = (
+    <div className='movie-card-loader' data-testid='movie-card-loader'>
+      <div className='image-section-loader'></div>
+      <div className='card-content-loader'>
+        <div className='card-heading-rating-loader'>
+          <p className='title-loader' data-testid='title-loader'></p>
+          <p className='rating-loader' data-testid='rating-loader'></p>
+        </div>
+        <p className='overview-loader' data-testid='overview-loader'></p>
+        <p className='overview-loader' data-testid='overview-loader'></p>
+      </div>
+    </div>
+  );
+
   return (
     <>
       {isLoading || (movieList && movieList.length < 1) ? (
-        <>
-          <ImageLoader limit={limit} />
-        </>
+        <div className='movie-list-container'>
+          {[...Array(25).keys()].map((i) => loader)}
+        </div>
       ) : (
         <InfiniteScroll
           dataLength={movieList?.length | 0}

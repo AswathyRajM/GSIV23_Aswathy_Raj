@@ -7,6 +7,7 @@ function MovieCard({ movie }) {
   const imgUrl = movie.poster_path
     ? `${process.env.REACT_APP_POSTER_URL}/w300${movie.poster_path}`
     : imageNotFountUrl;
+
   return (
     <div className='movie-card' data-testid='movie-card'>
       <Link
