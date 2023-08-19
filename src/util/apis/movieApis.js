@@ -17,18 +17,115 @@ export const fetchupComingMovies = async (page) => {
   }
 };
 
-export const fetchMovie = async (movieId) => {
+export const fetchMovieDetails = async (movieId) => {
   try {
-    // const moveDetailsEndpoint = `/movie/${movieId}`;
-    // let movieDetails = (await apiClient.get(moveDetailsEndpoint)).data;
-    // const movieCreditsEndpoint = `${moveDetailsEndpoint}/credits`;
-    // const cast = (await apiClient.get(movieCreditsEndpoint)).data;
-    // const directors = cast.crew.filter(({ job }) => job === 'Director');
-    // const director = directors.length > 0 ? directors[0] : undefined;
-    // movieDetails.director = director !== undefined ? director.name : undefined;
-    // movieDetails.castMem = cast.cast.map((person) => person.name);
-    // return data;
-    return {};
+    const moveDetailsEndpoint = `/movie/${movieId}`;
+    let r = {
+      adult: false,
+      backdrop_path: '/xjcQI6O8xZCFtLVjp2IckYgDqV6.jpg',
+      belongs_to_collection: null,
+      budget: 0,
+      genres: [
+        {
+          id: 18,
+          name: 'Drama',
+        },
+      ],
+      homepage: '',
+      id: 124,
+      imdb_id: 'tt0086961',
+      original_language: 'pl',
+      original_title: 'Bez końca',
+      overview:
+        '1982, Poland. A translator loses her husband and becomes a victim of her own sorrow. She looks to sex, to her son, to law, and to hypnotism when she has nothing else in this time of martial law when Solidarity was banned.',
+      popularity: 3.807,
+      poster_path: '/3pdF1guvIxNgmhDkmXJHCCk0PkC.jpg',
+      production_companies: [
+        {
+          id: 1587,
+          logo_path: null,
+          name: 'Film Polski',
+          origin_country: 'PL',
+        },
+        {
+          id: 73037,
+          logo_path: null,
+          name: 'Studio Filmowe Tor',
+          origin_country: 'PL',
+        },
+      ],
+      production_countries: [
+        {
+          iso_3166_1: 'PL',
+          name: 'Poland',
+        },
+      ],
+      release_date: '1985-06-17',
+      revenue: 0,
+      runtime: 108,
+      spoken_languages: [
+        {
+          english_name: 'English',
+          iso_639_1: 'en',
+          name: 'English',
+        },
+        {
+          english_name: 'Polish',
+          iso_639_1: 'pl',
+          name: 'Polski',
+        },
+      ],
+      status: 'Released',
+      tagline: '',
+      title: 'No End',
+      video: false,
+      vote_average: 7.4,
+      vote_count: 71,
+    };
+
+    const { data } = await apiClient.get(moveDetailsEndpoint);
+
+    const { crew, cast } = (
+      await apiClient.get(`${moveDetailsEndpoint}/credits`)
+    ).data;
+
+    let c = {
+      id: 124,
+      cast: [
+        {
+          adult: false,
+          gender: 1,
+          id: 1384,
+          known_for_department: 'Acting',
+          name: 'Grażyna Szapołowska',
+          original_name: 'Grażyna Szapołowska',
+          popularity: 7.848,
+          profile_path: '/1Ddm2eY5sPHXy0AG9ksALlGop42.jpg',
+          cast_id: 7,
+          character: 'Urszula Zyro',
+          credit_id: '52fe421bc3a36847f8004887',
+          order: 0,
+        },
+        {
+          adult: false,
+          gender: 1,
+          id: 1385,
+          known_for_department: 'Acting',
+          name: 'Maria Pakulnis',
+          original_name: 'Maria Pakulnis',
+          popularity: 1.391,
+          profile_path: '/ofUBgXCzbSa9ferpAINvSYgXEF8.jpg',
+          cast_id: 8,
+          character: 'Joanna Stach',
+          credit_id: '52fe421bc3a36847f800488b',
+          order: 1,
+        },
+      ],
+    };
+    data.director = crew.filter(({ job }) => job === 'Director');
+    data.casts = cast.map((person) => person.name);
+
+    return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       return error.response;

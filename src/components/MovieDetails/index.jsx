@@ -2,23 +2,28 @@ import React, { useEffect } from 'react';
 import './MovieDetails.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { getMovieDetails } from '../../util/redux/reducer/movieReducer';
 
 function MovieDetails() {
   const navigate = useNavigate();
   const { movieId } = useParams();
-  // const { movie, isLoading } = useSelector((state) => state.movie);
+  const { MovieDetails, isLoading, error } = useSelector(
+    (state) => state.movies
+  );
   const dispatch = useDispatch();
 
-  // function toHoursAndMinutes(totalMinutes) {
-  //   const hours = ('0' + Math.floor(totalMinutes / 60)).slice(-2);
-  //   const minutes = ('0' + (totalMinutes % 60)).slice(-2);
-  //   return `${hours}:${minutes}`;
-  // }
+  function formatTime(totalMinutes) {
+    let hours = totalMinutes / 60;
+    let rhours = Math.floor(hours);
+    let minutes = (hours - rhours) * 60;
+    let rminutes = Math.round(minutes);
+    return rhours + ' hour(s) and ' + rminutes + ' minute(s)';
+  }
 
-  // useEffect(() => {
-  //   if (movieId === undefined) navigate('/');
-  //   // else dispatch(getMovie(parseInt(id)));
-  // }, [movieId]);
+  useEffect(() => {
+    if (movieId === undefined || Number.isInteger(movieId)) navigate('/');
+    else dispatch(getMovieDetails(parseInt(movieId)));
+  }, [movieId]);
 
   return (
     <div className='details-container'>
@@ -30,7 +35,7 @@ function MovieDetails() {
           <p className='movie-title'>
             <span className='movie-rating'>()</span>
           </p>
-          <p className='movie-info'>2023|1.39|kj</p>
+          <p className='movie-info'>2023|{formatTime(new Date())}|kj</p>
           <p className='movie-info '></p>
           <p className='movie-info'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis at

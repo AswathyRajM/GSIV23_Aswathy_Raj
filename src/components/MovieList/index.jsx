@@ -21,36 +21,45 @@ function MoveiList() {
 
   useEffect(() => {
     dispatch(getUpcomingMovies(page));
-  }, [dispatch, page]);
+  }, [dispatch]);
 
   return (
     <>
-      {isLoading  || (movieList && movieList.length < 1) ? (
+      <InfiniteScroll
+        dataLength={movieList?.length | 0}
+        next={fetchMoreMovies}
+        hasMore={page <= totalPages}
+        loader={<LoaderComponent />}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+      >
         <div className='movie-list-container'>
-          {[...Array(25).keys()].map((i) => {
-            return (
-              <div key={i}>
-                <Loader />
-              </div>
-            );
-          })}
+          {movieList.map((movie, i) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
         </div>
-      ) : (
-        <InfiniteScroll
-          dataLength={movieList?.length | 0}
-          next={fetchMoreMovies}
-          hasMore={page <= totalPages}
-          loader={<h4>Loading...</h4>}
-        >
-          <div className='movie-list-container'>
-            {movieList.map((movie, i) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
-        </InfiniteScroll>
-      )}
+      </InfiniteScroll>
     </>
   );
 }
+
+const LoaderComponent = () => {
+  let width = Math.ceil(window.innerWidth / (350 + 40));
+  let height = Math.ceil(window.innerHeight / (450 + 40));
+  return (
+    <div className='movie-list-container'>
+      {[...Array(width * height).keys()].map((i) => {
+        return (
+          <div key={i}>
+            <Loader />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export default MoveiList;
