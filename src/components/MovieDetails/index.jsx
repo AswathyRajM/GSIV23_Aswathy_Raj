@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './MovieDetails.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function MovieDetails() {
+  const navigate = useNavigate();
+  const { movieId } = useParams();
+  // const { movie, isLoading } = useSelector((state) => state.movie);
+  const dispatch = useDispatch();
+
+  // function toHoursAndMinutes(totalMinutes) {
+  //   const hours = ('0' + Math.floor(totalMinutes / 60)).slice(-2);
+  //   const minutes = ('0' + (totalMinutes % 60)).slice(-2);
+  //   return `${hours}:${minutes}`;
+  // }
+
+  // useEffect(() => {
+  //   if (movieId === undefined) navigate('/');
+  //   // else dispatch(getMovie(parseInt(id)));
+  // }, [movieId]);
+
   return (
     <div className='details-container'>
       <div className='details-main'>

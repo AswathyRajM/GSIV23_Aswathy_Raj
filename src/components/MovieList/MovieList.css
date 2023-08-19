@@ -39,7 +39,26 @@
 .image-section-loader {
   width: 100%;
   height: 340px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: linear-gradient(60deg, var(--disabled) 0%, #ebebeb 100%);
+}
+
+.image-section-loader img {
+  width: 15%;
+  animation: rotation infinite 2s linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .card-heading-rating-loader {

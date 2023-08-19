@@ -25,7 +25,7 @@ function MoveiList() {
 
   return (
     <>
-      {isLoading || (movieList && movieList.length < 1) ? (
+      {isLoading  || (movieList && movieList.length < 1) ? (
         <div className='movie-list-container'>
           {[...Array(25).keys()].map((i) => {
             return (
