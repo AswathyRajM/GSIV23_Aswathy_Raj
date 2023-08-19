@@ -2,7 +2,8 @@
   width: 340px;
   height: 450px;
   display: inline-block;
-  border-radius: 0.5rem;
+  overflow: hidden;
+  border-radius: 10px;
   cursor: pointer;
   margin-top: 1rem;
   text-decoration: none;

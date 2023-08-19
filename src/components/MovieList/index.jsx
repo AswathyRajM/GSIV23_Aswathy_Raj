@@ -18,7 +18,7 @@ function MoveiList() {
     useSelector((state) => state.movies);
 
   const fetchMoreMovies = () => {
-    if (page > totalPages) return;
+    if (page + 1 > totalPages) return;
     if (searchTerm.length > 0) {
       dispatch(searchMovies({ movieName: searchTerm, page: pageSearch + 1 }));
       setPageSearch(pageSearch + 1);
@@ -48,14 +48,18 @@ function MoveiList() {
       <InfiniteScroll
         dataLength={movieList.length}
         next={fetchMoreMovies}
-        hasMore={page < totalPages}
+        hasMore={page + 1 < totalPages}
         loader={<Loader />}
         endMessage={
           isLoading ? (
             <></>
+          ) : movieList.length === 0 ? (
+            <p style={{ textAlign: 'center', fontSize: '1.5rem' }}>
+              <b>No movies found!</b>
+            </p>
           ) : (
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
+            <p style={{ textAlign: 'center', fontSize: '1.5rem' }}>
+              <b>That's all for now!</b>
             </p>
           )
         }
