@@ -3,6 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import MovieCard from '../MovieCard';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  clearState,
   getUpcomingMovies,
   searchMovies,
 } from '../../util/redux/reducer/movieReducer';
@@ -10,8 +11,8 @@ import './MovieList.css';
 import { Loader } from '../MovieListLoader';
 
 function MoveiList() {
-  const [page, setPage] = useState(1);
-  const [pageSearch, setPageSearch] = useState(1);
+  const [page, setPage] = useState(0);
+  const [pageSearch, setPageSearch] = useState(0);
   const dispatch = useDispatch();
   const { totalPages, movieList, currentPage, searchTerm } = useSelector(
     (state) => state.movies
@@ -20,34 +21,35 @@ function MoveiList() {
   const fetchMoreMovies = () => {
     if (page > totalPages) return;
     if (searchTerm.length > 0) {
-      setPage(1);
-      dispatch(searchMovies({ movieName: searchTerm, page: pageSearch }));
+      dispatch(searchMovies({ movieName: searchTerm, page: pageSearch + 1 }));
       setPageSearch(pageSearch + 1);
       return;
     }
     dispatch(getUpcomingMovies(page + 1));
     setPage(page + 1);
-    setPageSearch(1);
   };
 
   useEffect(() => {
     if (searchTerm.length > 0) {
       setPage(1);
-      dispatch(searchMovies({ movieName: searchTerm, page: pageSearch }));
-      setPageSearch(pageSearch + 1);
-    } else if (currentPage !== page) {
-      dispatch(getUpcomingMovies(page));
       setPageSearch(1);
-      setPage(page + 1);
+      dispatch(searchMovies({ movieName: searchTerm, page: 1 }));
+    } else if (currentPage !== page + 1) {
+      setPageSearch(1);
+      setPage(1);
+      dispatch(getUpcomingMovies(1));
     }
+    return () => {
+      dispatch(clearState());
+    };
   }, [dispatch, searchTerm]);
 
   return (
     <>
       <InfiniteScroll
-        dataLength={movieList?.length | 0}
+        dataLength={movieList.length}
         next={fetchMoreMovies}
-        hasMore={page <= totalPages}
+        hasMore={page < totalPages}
         loader={<Loader />}
         endMessage={
           <p style={{ textAlign: 'center' }}>

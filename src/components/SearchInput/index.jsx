@@ -6,11 +6,13 @@ import {
   clearState,
   setSearchTerm,
 } from '../../util/redux/reducer/movieReducer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function SearchInput() {
   const dispatch = useDispatch();
-  const [searchText, setSearchText] = useState('');
+  const { searchTerm } = useSelector((state) => state.movies);
+
+  const [searchText, setSearchText] = useState(searchTerm);
   const [timer, setTimer] = useState(null);
 
   const handleSeahcInputChange = (text) => {
@@ -24,8 +26,8 @@ function SearchInput() {
 
     // debounce technique
     const newTimer = setTimeout(() => {
-      dispatch(setSearchTerm(text));
       dispatch(clearState());
+      dispatch(setSearchTerm(text));
     }, 700);
     setTimer(newTimer);
   };
