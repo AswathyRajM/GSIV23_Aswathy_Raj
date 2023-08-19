@@ -2,15 +2,21 @@ import React, { useEffect } from 'react';
 import './MovieDetails.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMovieDetails } from '../../util/redux/reducer/movieReducer';
+import {
+  getMovieDetails,
+  clearMovieDetails,
+} from '../../util/redux/reducer/movieReducer';
+import imageNotFountUrl from '../../assets/images/movie-not-found-icon.png';
+import { DetailsLoader } from '../MovieListLoader';
 
 function MovieDetails() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { movieId } = useParams();
-  const { MovieDetails, isLoading, error } = useSelector(
+  const { movieDetails, isLoading, error } = useSelector(
     (state) => state.movies
   );
-  const dispatch = useDispatch();
 
   function formatTime(totalMinutes) {
     let hours = totalMinutes / 60;
@@ -20,32 +26,64 @@ function MovieDetails() {
     return rhours + ' hour(s) and ' + rminutes + ' minute(s)';
   }
 
+  const imgUrl =
+    movieDetails && movieDetails.poster_path
+      ? `${process.env.REACT_APP_POSTER_URL}/w400${movieDetails.poster_path}`
+      : movieDetails && movieDetails.backdrop_path
+      ? `${process.env.REACT_APP_POSTER_URL}/w400${movieDetails.backdrop_path}`
+      : imageNotFountUrl;
+
   useEffect(() => {
-    if (movieId === undefined || Number.isInteger(movieId)) navigate('/');
+    if (movieId === undefined || isNaN(movieId)) navigate('/movie-not-found');
     else dispatch(getMovieDetails(parseInt(movieId)));
+    return () => {
+      dispatch(clearMovieDetails());
+    };
   }, [movieId]);
 
+  if (
+    !movieDetails ||
+    Object.keys(movieDetails).length === 0 ||
+    movieDetails.release_date === undefined 
+  )
+    return <DetailsLoader />;
   return (
     <div className='details-container'>
       <div className='details-main'>
         <div className='image-container'>
-          <img />
+          <img src={imgUrl} alt={movieDetails.title} />
         </div>
         <div className='movie-details'>
           <p className='movie-title'>
-            <span className='movie-rating'>()</span>
+            {movieDetails.title}
+            <span className='movie-rating'>
+              ⭐ {movieDetails.vote_average} ratings
+            </span>
           </p>
-          <p className='movie-info'>2023|{formatTime(new Date())}|kj</p>
-          <p className='movie-info '></p>
           <p className='movie-info'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis at
-            totam inventore, aperiam autem et esse? Rerum, soluta repellat
-            consequatur, repudiandae magnam, nesciunt voluptatum autem ipsa
-            nulla culpa aut pariatur! Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quia non quisquam corrupti perspiciatis quidem
-            harum modi dicta incidunt necessitatibus, consectetur ipsam autem
-            nostrum nobis esse illo quas beatae officiis error!
+            Release Year {movieDetails.release_date.slice(0, 4)} <span>|</span>
+            Running Time {formatTime(movieDetails.runtime)}
+            <span>|</span>
+            Director(s){' '}
+            {movieDetails.director.map((direct, i) => {
+              if (i > 0) return `, ${direct.name} `;
+              else return `${direct.name} `;
+            })}
           </p>
+          <p className='sub-heading'>Casts </p>
+          <p className='movie-info cast-info-container padding'>
+            {movieDetails.casts.slice(0, 12).map((cast, i) => {
+              if (i === 11)
+                return (
+                  <>
+                    <span className='cast-info'> {cast}</span>...
+                  </>
+                );
+              return <span className='cast-info'> {cast}</span>;
+            })}
+          </p>
+          <p className='sub-heading'>Description </p>
+          <p className='movie-info padding'>{movieDetails.overview}</p>
         </div>
       </div>
     </div>

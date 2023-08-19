@@ -4,9 +4,12 @@ import imageNotFountUrl from '../../assets/images/movie-not-found-icon.png';
 import './MovieCard.css';
 
 function MovieCard({ movie }) {
-  const imgUrl = movie.poster_path
-    ? `${process.env.REACT_APP_POSTER_URL}/w300${movie.poster_path}`
-    : imageNotFountUrl;
+  const imgUrl =
+    movie && movie.poster_path
+      ? `${process.env.REACT_APP_POSTER_URL}/w300${movie.poster_path}`
+      : movie && movie.backdrop_path
+      ? `${process.env.REACT_APP_POSTER_URL}/w300${movie.backdrop_path}`
+      : imageNotFountUrl;
 
   return (
     <div className='movie-card' data-testid='movie-card'>

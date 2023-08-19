@@ -29,11 +29,11 @@ const initialState = {
 export const movieReducer = createSlice({
   name: 'movies',
   initialState,
-  // reducers: {
-  //   fetchUpcomingMovies: (state) => {
-  //     movies.push;
-  //   },
-  // },
+  reducers: {
+    clearMovieDetails: (state) => {
+      state.movieDetails = {};
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getUpcomingMovies.pending, (state) => {
@@ -78,6 +78,6 @@ export const movieReducer = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = movieReducer.actions;
+export const { clearMovieDetails } = movieReducer.actions;
 
 export default movieReducer.reducer;
