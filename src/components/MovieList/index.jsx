@@ -31,7 +31,7 @@ function MoveiList() {
 
   useEffect(() => {
     if (searchTerm.length > 0) {
-      setPage(1);
+      setPage(0);
       setPageSearch(1);
       dispatch(searchMovies({ movieName: searchTerm, page: 1 }));
     } else if (currentPage !== page + 1) {

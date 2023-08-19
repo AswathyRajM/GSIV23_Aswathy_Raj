@@ -49,8 +49,8 @@ export const movieReducer = createSlice({
     },
 
     clearState: (state) => {
-      state.movieList = [];
       state.currentPage = 0;
+      state.movieList = [];
     },
 
     setSearchTerm: (state, action) => {
