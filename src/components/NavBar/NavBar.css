@@ -23,7 +23,7 @@
   justify-content: flex-start;
 }
 
-@media screen and (max-width: 512px) {
+@media screen and (max-width: 650px) {
   .search {
     width: 100%;
   }

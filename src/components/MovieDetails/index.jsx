@@ -7,16 +7,14 @@ import {
   clearMovieDetails,
 } from '../../util/redux/reducer/movieReducer';
 import imageNotFountUrl from '../../assets/images/movie-not-found-icon.png';
-import { DetailsLoader } from '../MovieListLoader';
+import { DetailsShimmer } from '../MovieListLoader';
 
 function MovieDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { movieId } = useParams();
-  const { movieDetails, isLoading, error } = useSelector(
-    (state) => state.movies
-  );
+  const { movieDetails } = useSelector((state) => state.movies);
 
   function formatTime(totalMinutes) {
     let hours = totalMinutes / 60;
@@ -46,7 +44,7 @@ function MovieDetails() {
     Object.keys(movieDetails).length === 0 ||
     movieDetails.release_date === undefined
   )
-    return <DetailsLoader />;
+    return <DetailsShimmer />;
   return (
     <div className='details-container'>
       <div className='details-main'>

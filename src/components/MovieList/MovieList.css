@@ -1,13 +1,13 @@
 .movie-list-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-around;
   padding: 0rem;
   gap: 2rem;
   column-gap: 2.5rem;
 }
 
-.movie-card-loader {
+.movie-card-shimmer {
   width: 340px;
   height: 450px;
   display: inline-block;
@@ -18,26 +18,26 @@
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.card-content-loader {
+.card-content-shimmer {
   padding: 0.5rem;
 }
 
-.card-content-loader p {
+.card-content-shimmer p {
   margin: 0;
   background-color: var(--disabled);
   width: 100%;
   height: 1rem;
 }
 
-.card-content-loader .title-loader {
+.card-content-shimmer .title-shimmer {
   width: 75%;
 }
 
-.card-content-loader .rating-loader {
+.card-content-shimmer .rating-shimmer {
   width: 20%;
 }
 
-.image-section-loader {
+.image-section-shimmer {
   width: 100%;
   height: 340px;
   position: relative;
@@ -47,7 +47,7 @@
   background-image: linear-gradient(60deg, var(--disabled) 0%, #ebebeb 100%);
 }
 
-.image-section-loader img {
+.image-section-shimmer img {
   width: 15%;
   animation: rotation infinite 2s linear;
 }
@@ -62,14 +62,14 @@
   }
 }
 
-.card-heading-rating-loader {
+.card-heading-rating-shimmer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 1rem 0;
 }
 
-.overview-loader {
+.overview-shimmer {
   width: 100%;
   background-color: var(--disabled);
   margin-top: 0.4rem !important;

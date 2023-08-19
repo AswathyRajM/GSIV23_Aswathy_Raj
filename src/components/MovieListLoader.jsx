@@ -3,17 +3,17 @@ import LoaderImg from '../assets/images/loader.png';
 function LoaderComponent() {
   return (
     <>
-      <div className='movie-card-loader' data-testid='movie-card-loader'>
-        <div className='image-section-loader'>
+      <div className='movie-card-shimmer' data-testid='movie-card-shimmer'>
+        <div className='image-section-shimmer'>
           <img src={LoaderImg} alt='loading' />
         </div>
-        <div className='card-content-loader'>
-          <div className='card-heading-rating-loader'>
-            <p className='title-loader' data-testid='title-loader' />
-            <p className='rating-loader' data-testid='rating-loader' />
+        <div className='card-content-shimmer'>
+          <div className='card-heading-rating-shimmer'>
+            <p className='title-shimmer' data-testid='title-shimmer' />
+            <p className='rating-shimmer' data-testid='rating-shimmer' />
           </div>
-          <p className='overview-loader' data-testid='overview-loader' />
-          <p className='overview-loader' data-testid='overview-loader' />
+          <p className='overview-shimmer' data-testid='overview-shimmer' />
+          <p className='overview-shimmer' data-testid='overview-shimmer' />
         </div>
       </div>
     </>
@@ -36,21 +36,21 @@ export const Loader = () => {
   );
 };
 
-export function DetailsLoader() {
+export function DetailsShimmer() {
   return (
-    <div className='details-container-loader'>
-      <div className='details-main-loader'>
-        <div className='movie-info-loader image-container-loader '>
+    <div className='details-container-shimmer'>
+      <div className='details-main-shimmer'>
+        <div className='movie-info-shimmer image-container-shimmer '>
           <img src={LoaderImg} alt='loading' />
         </div>
-        <div className='movie-details-loader'>
-          <div className='movie-title-loader'>
-            <p className='movie-info-loader left-loader'></p>
-            <p className='movie-info-loader right-loader'></p>
+        <div className='movie-details-shimmer'>
+          <div className='movie-title-shimmer'>
+            <p className='movie-info-shimmer left-shimmer'></p>
+            <p className='movie-info-shimmer right-shimmer'></p>
           </div>
-          <p className='movie-info-loader info' />
-          <p className='movie-info-loader info-container-loader' />
-          <p className='movie-info-loader desc-container-loader' />
+          <p className='movie-info-shimmer info' />
+          <p className='movie-info-shimmer info-container-shimmer' />
+          <p className='movie-info-shimmer desc-container-shimmer' />
         </div>
       </div>
     </div>

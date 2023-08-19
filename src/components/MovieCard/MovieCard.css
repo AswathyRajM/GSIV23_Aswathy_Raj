@@ -75,3 +75,9 @@
 .not-available {
   color: var(--disabled);
 }
+
+@media only screen and (max-width: 550px) {
+  .card {
+    width: 100%;
+  }
+}
