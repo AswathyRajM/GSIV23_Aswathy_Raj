@@ -8,8 +8,7 @@ function NavBar() {
   const location = useLocation();
   const path = location.pathname;
   const isHome = path === '/';
-  const isDetails = path.slice(0, path.lastIndexOf('/'));
-
+  const isDetails = path.slice(0, path.lastIndexOf('/')) === '/movie/details';
   return (
     <div className='navbar'>
       <div className='search'>
@@ -30,9 +29,6 @@ function NavBar() {
             <HomeIcon className='home-icon' />
           </Link>
         </li>
-        {/* <li>
-          <Link className='nav-link' to='/movie/details'></Link>
-        </li> */}
 
         <li></li>
       </ul>

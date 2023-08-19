@@ -34,7 +34,7 @@ function MovieDetails() {
       : imageNotFountUrl;
 
   useEffect(() => {
-    if (movieId === undefined || isNaN(movieId)) navigate('/movie-not-found');
+    if (movieId === undefined || isNaN(movieId)) navigate('/not-found');
     else dispatch(getMovieDetails(parseInt(movieId)));
     return () => {
       dispatch(clearMovieDetails());

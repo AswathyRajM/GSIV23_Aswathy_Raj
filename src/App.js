@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PageNotFound from './components/PageNotFound';
 import './App.css';
 import NavBar from './components/NavBar';
-import MoveiList from './components/MovieList';
-import MovieDetails from './components/MovieDetails';
-import MovieNotFound from './components/MovieNotFound';
+import PageNotFound from './pages/PageNotFound';
+import MoveiList from './pages/MovieList';
+import MovieDetails from './pages/MovieDetails';
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
           <Routes>
             <Route path='/' element={<MoveiList />} />
             <Route path='/movie/details/:movieId' element={<MovieDetails />} />
-            <Route path='/movie-not-found' element={<MovieNotFound />} />
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>

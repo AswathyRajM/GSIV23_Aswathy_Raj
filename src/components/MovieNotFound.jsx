@@ -5,19 +5,18 @@ function MovieNotFound() {
   return (
     <div
       style={{
-        height: '80vh',
-        width: '100vw',
+        height: '20vh',
+        width: '60vw',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
       <h1 style={{ textAlign: 'center', color: 'var(--gray)' }}>
-        <p> 404: Movie Not Found!</p> <br />
-        <Link className='nav-link' to='/'>
-          {' '}
-          Click to go back to home
-        </Link>{' '}
+        <p>
+          Movie Not Found! <br />
+          Please try again
+        </p>
       </h1>
     </div>
   );

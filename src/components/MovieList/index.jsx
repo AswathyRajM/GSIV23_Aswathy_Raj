@@ -14,9 +14,8 @@ function MoveiList() {
   const [page, setPage] = useState(0);
   const [pageSearch, setPageSearch] = useState(0);
   const dispatch = useDispatch();
-  const { totalPages, movieList, currentPage, searchTerm } = useSelector(
-    (state) => state.movies
-  );
+  const { totalPages, movieList, currentPage, searchTerm, isLoading } =
+    useSelector((state) => state.movies);
 
   const fetchMoreMovies = () => {
     if (page > totalPages) return;
@@ -52,9 +51,13 @@ function MoveiList() {
         hasMore={page < totalPages}
         loader={<Loader />}
         endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
-          </p>
+          isLoading ? (
+            <></>
+          ) : (
+            <p style={{ textAlign: 'center' }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          )
         }
       >
         <div className='movie-list-container'>
