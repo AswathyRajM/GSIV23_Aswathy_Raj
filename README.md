@@ -41,11 +41,11 @@ For example, please refer the .env.example file in the root directory
 
 #### Follow these steps:
 
-    1. Login to TMDB
-    2. Get the access token from profile
-    3. Create a file named ".env" in the root directory of your project
-    4. Copy the contents of .env.example to .env file and replace <your-access-token> with your access token
-    5. Save the ".env" file.
+1. Login to TMDB
+2. Get the access token from profile
+3. Create a file named ".env" in the root directory of your project
+4. Copy the contents of .env.example to .env file and replace <your-access-token> with your access token
+5. Save the ".env" file.
 
 Now your application can use TMDb with the access token you provided.
 
