@@ -66,7 +66,7 @@
   display: inline-flex;
   flex-wrap: wrap;
   column-gap: 0.5rem;
-  max-height: 5rem;
+  /* max-height: 5rem; */
   min-height: 1.5rem;
   overflow: hidden;
 }
