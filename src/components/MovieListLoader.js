@@ -20,8 +20,8 @@ function LoaderComponent() {
 }
 
 export const Loader = () => {
-  let width = Math.ceil(window.innerWidth / (350 + 40));
-  let height = Math.ceil(window.innerHeight / (450 + 40));
+  let width = Math.ceil(window.innerWidth / (280 + 40));
+  let height = Math.ceil(window.innerHeight / (385 + 40));
   return (
     <div className='movie-list-container' data-testid='loader'>
       {[...Array(width * height).keys()].map((i) => {
