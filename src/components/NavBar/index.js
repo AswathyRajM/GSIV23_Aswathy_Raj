@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavBar.css';
 import HomeIcon from '@mui/icons-material/Home';
-import SearchInput from '../SearchInput';
+import SearchInput from '../SearchInput/index';
 
 function NavBar() {
   const location = useLocation();
@@ -11,7 +11,7 @@ function NavBar() {
   const isDetails = path.slice(0, path.lastIndexOf('/')) === '/movie/details';
   return (
     <div className='navbar'>
-      <div className='search'>
+      <div className='search' data-testid='search'>
         {isHome ? (
           <SearchInput />
         ) : isDetails ? (
@@ -23,10 +23,10 @@ function NavBar() {
         )}
       </div>
 
-      <ul className='nav-links'>
+      <ul className='nav-links' data-testid='nav-ul'>
         <li>
-          <Link className='nav-link' to='/'>
-            <HomeIcon className='home-icon' />
+          <Link className='nav-link' to='/' data-testid='link'>
+            <HomeIcon className='home-icon' data-testid='home-btn' />
           </Link>
         </li>
 

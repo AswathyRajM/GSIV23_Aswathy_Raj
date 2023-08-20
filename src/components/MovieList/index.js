@@ -29,7 +29,7 @@ function MoveiList() {
   };
 
   useEffect(() => {
-    if (searchTerm.length > 0) {
+    if (searchTerm?.length > 0) {
       setPage(0);
       setPageSearch(1);
       dispatch(searchMovies({ movieName: searchTerm, page: 1 }));

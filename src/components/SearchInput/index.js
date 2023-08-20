@@ -38,7 +38,7 @@ function SearchInput() {
       </span>
       <input
         className='nosubmit'
-        data-testid='search-bar'
+        data-testid='search-input'
         aria-label='Search'
         type='search'
         placeholder='Search'

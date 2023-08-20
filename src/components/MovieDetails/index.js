@@ -48,17 +48,23 @@ function MovieDetails() {
   return (
     <div className='details-container'>
       <div className='details-main'>
-        <div className='image-container'>
+        <div className='image-container' data-testid='movie-image'>
           <img src={imgUrl} alt={movieDetails.title} />
         </div>
         <div className='movie-details'>
           <p className='movie-title'>
             {movieDetails.title}
             <span className='movie-rating'>
-              ⭐ {parseFloat(movieDetails.vote_average).toFixed(1)} ratings
+              {movieDetails.vote_average && movieDetails.vote_average > 0 ? (
+                <span className='movie-rating'>
+                  ⭐ {parseFloat(movieDetails.vote_average).toFixed(1)} ratings
+                </span>
+              ) : (
+                <></>
+              )}
             </span>
           </p>
-          <p className='movie-info'>
+          <p className='movie-info' data-testid='movie-info'>
             Release Year {movieDetails.release_date.slice(0, 4)} <span>|</span>
             Running Time {formatTime(movieDetails.runtime)}
             <span>|</span>
@@ -86,7 +92,7 @@ function MovieDetails() {
             })}
           </p>
 
-          <p className='movie-info padding'>
+          <p className='movie-info padding' data-testid='movie-overview'>
             {' '}
             <span className='sub-heading'>Description : &nbsp;</span>
             {movieDetails.overview}
