@@ -9,6 +9,7 @@ export const fetchupComingMovies = async (page) => {
     data.page = page;
     return data;
   } catch (error) {
+    console.error(error);
     if (axios.isAxiosError(error)) {
       return error.response;
     } else {
@@ -32,6 +33,7 @@ export const fetchMovieDetails = async (movieId) => {
 
     return data;
   } catch (error) {
+    console.error(error);
     if (axios.isAxiosError(error)) {
       return error.response;
     } else {
@@ -47,6 +49,7 @@ export const searchMovie = async (movieName, page) => {
     const data = response.data;
     return data;
   } catch (error) {
+    console.error(error);
     if (axios.isAxiosError(error)) {
       return error.response;
     } else {
