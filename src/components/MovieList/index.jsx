@@ -45,6 +45,7 @@ function MoveiList() {
 
   return (
     <>
+      {isLoading && movieList.length === 0 && <Loader />}
       <InfiniteScroll
         dataLength={movieList.length}
         next={fetchMoreMovies}

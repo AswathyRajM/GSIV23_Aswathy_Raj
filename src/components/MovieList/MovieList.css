@@ -1,7 +1,7 @@
 .movie-list-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding: 0rem;
   gap: 2rem;
   column-gap: 2.5rem;

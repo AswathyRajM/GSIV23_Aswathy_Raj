@@ -13,7 +13,6 @@ function LoaderComponent() {
             <p className='rating-shimmer' data-testid='rating-shimmer' />
           </div>
           <p className='overview-shimmer' data-testid='overview-shimmer' />
-          <p className='overview-shimmer' data-testid='overview-shimmer' />
         </div>
       </div>
     </>

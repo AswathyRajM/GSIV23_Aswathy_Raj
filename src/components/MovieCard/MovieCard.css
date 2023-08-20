@@ -62,7 +62,7 @@
 .movie-overview {
   display: -webkit-box;
   max-width: 100%;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-top: 1rem !important;

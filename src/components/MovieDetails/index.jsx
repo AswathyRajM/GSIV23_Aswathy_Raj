@@ -68,26 +68,29 @@ function MovieDetails() {
               else return `${direct.name} `;
             })}
           </p>
-          <p className='sub-heading'>Casts </p>
           <p className='movie-info cast-info-container padding'>
+            <span className='sub-heading'>Casts :</span>
             {movieDetails.casts.slice(0, 12).map((cast, i) => {
               if (i === 11)
                 return (
                   <React.Fragment key={i}>
-                    <span className='cast-info'> {cast}</span>
-                    ...
+                    <span className='cast-info'> {cast}...</span>
                   </React.Fragment>
                 );
               return (
                 <span key={i} className='cast-info'>
                   {' '}
-                  {cast}
+                  {cast},
                 </span>
               );
             })}
           </p>
-          <p className='sub-heading'>Description </p>
-          <p className='movie-info padding'>{movieDetails.overview}</p>
+
+          <p className='movie-info padding'>
+            {' '}
+            <span className='sub-heading'>Description : &nbsp;</span>
+            {movieDetails.overview}
+          </p>
         </div>
       </div>
     </div>
