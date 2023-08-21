@@ -3,13 +3,14 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 0rem;
-  gap: 2rem;
-  column-gap: 2.5rem;
+  gap: 1rem;
+  column-gap: 1.5rem;
+  background-color: antiquewhite;
 }
 
 .movie-card-shimmer {
-  width: 340px;
-  height: 450px;
+  width: 280px;
+  height: 385px;
   display: inline-block;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -39,7 +40,7 @@
 
 .image-section-shimmer {
   width: 100%;
-  height: 340px;
+  height: 320px;
   position: relative;
   display: flex;
   align-items: center;
@@ -66,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 .overview-shimmer {
