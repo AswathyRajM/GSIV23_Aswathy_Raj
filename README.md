@@ -101,18 +101,4 @@ I learned and applied the debounce technique to the search functionality, allowi
 
 I take pride in optimizing application performance, which includes making the app SEO-friendly. This reflects my expertise in ensuring that the application not only functions smoothly but is also discoverable on search engines, enhancing its reach and accessibility.
 
-## Improvements with 4 More Hours
 
-- **Loading and transition animations for smooth UI:** Adding more animations and transitions to pages loading and image loading.
-
-- **Handling of more edge cases of error Handling:** Eventhough error handling is already implemented, more error handling and implementation of a fallback UI would improve the perfomance and functionality.
-
-- **More Unit Test Coverage:** More unit test cases for navigation and redering which would increase the code reliability.
-
-- **Code Splitting:** Improve the asset loading, implement lazy loading for images, and explore additional opportunities for code splitting to minimize initial load time
-
-## Feedback
-
-I found this challenge to be well-structured and comprehensive in assessing React development skills. The provided UI specs and API integration requirements offered a realistic scenario, allowing me to showcase my abilities effectively. One potential improvement could be to include a more detailed scoring rubric for each evaluation criterion, providing candidates with clearer expectations.
-
-Again, thank you for this opportunity. I look forward to discussing my work further and the possibility of joining the GSynergy team.
